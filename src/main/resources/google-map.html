@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<!--    Adapted from http://www.geocodezip.com/geoxml3_test/v3_geoxml3_KML_Samples.html -->
+<!-- As well as from http://www.geocodezip.com/geoxml3_test/v3_geoxml3_test_parseKmlString.html -->
+<!-- As well as from https://developers.google.com/maps/documentation/javascript/kml -->
+<head>
+<meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+<meta charset="utf-8">
+<title>KML Click Capture Sample</title>
+<style>
+html, body {
+	height: 778px;
+	padding: 0;
+	margin: 0;
+}
+
+#map {
+	height: 768px;
+	width: 1024px;
+	overflow: hidden;
+	float: left;
+	border: thin solid #333;
+}
+</style>
+</head>
+<body>
+	<div id="map"></div>
+	<script
+		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBOBQ0YeEjQsTeogVKrytbMfnAuggjtODg&callback=initMap">
+		
+	</script>
+	<script src='geoxml3.js'></script>
+	<script>
+		var map;
+		var src = 'https://developers.google.com/maps/documentation/javascript/examples/kml/westcampus.kml';
+
+		function initialize() {
+			initMap();
+			kmlParser = new geoXML3.parser({
+				map : map
+			});
+			kmlParser.parse(src);
+		}
+
+		function initMap() {
+			map = new google.maps.Map(document.getElementById('map'), {
+				center : new google.maps.LatLng(-19.257753, 146.823688),
+				zoom : 2,
+				mapTypeId : 'terrain'
+			});
+
+			var kmlLayer = new google.maps.KmlLayer(src, {
+				suppressInfoWindows : true,
+				preserveViewport : false,
+				map : map
+			});
+
+		}
+		google.maps.event.addDomListener(window, 'load', initialize);
+	</script>
+</body>
+</html>
