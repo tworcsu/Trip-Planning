@@ -2,6 +2,6 @@
 
 # DTR-02
 
-Todd Worcester
-Noah Cain
+Todd Worcester  
+Noah Cain  
 Nik Fredriksen
